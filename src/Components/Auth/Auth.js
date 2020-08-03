@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import {connect} from 'react-redux';
-import {getUser} from '../../ducks/reducer'
+import {getUser} from '../../ducks/usersReducer'
 
 class Auth extends Component {
     constructor (props) {

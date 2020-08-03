@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux'
+import {saveRecipe} from '../../ducks/recipeReducer'
 import axios from 'axios';
+import './Recipes.css';
 
 class Recipes extends Component {
     constructor(props) {
@@ -20,15 +23,22 @@ class Recipes extends Component {
     }
 
     render () {
-        console.log(this.state)
+        console.log(this.props)
         const mappedRecipes = this.state.recipes.map((recipe) => (
-            <div>
-                <img key={recipe.recipe_id} src={recipe.recipe_img} alt='LullyLemon Recipe'/>
-                <h1>{recipe.title}</h1>
-                <h3>Ingredients</h3>
-                <p>{recipe.ingredients}</p>
-                <h3>Instructions</h3>
-                <p>{recipe.instructions}</p>
+            <div className='recipe-card'>
+                <img className='recipe-img' key={recipe.recipe_id} src={recipe.recipe_img} alt='LullyLemon Recipe'/>
+                <section className='title'>
+                    <h1>{recipe.title}</h1>
+                    <button onClick={this.props.saveRecipe}>Save</button>
+                </section>
+                <section className='ingredients'>
+                    <h3>Ingredients</h3>
+                    <p>{recipe.ingredients}</p>
+                </section>
+                <section className='instructions'>
+                    <h3>Instructions</h3>
+                    <p>{recipe.instructions}</p>
+                </section>
             </div>
         ))
         return (
@@ -39,4 +49,6 @@ class Recipes extends Component {
     }
 }
 
-export default Recipes;
+const mapStateToProps = reduxState => reduxState
+
+export default connect(mapStateToProps, {saveRecipe})(Recipes);

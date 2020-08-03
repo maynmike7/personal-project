@@ -1,0 +1,33 @@
+$flex-display: flex;
+
+.recipe-card {
+    display: $flex-display;
+    justify-content: space-between;
+    border: solid 2px black;
+}
+
+.recipe-img {
+    width: 150px;
+}
+
+.ingredients {
+    display: $flex-display;
+    flex-direction: column;
+    align-items: center;
+}
+
+.instructions {
+    display: $flex-display;
+    flex-direction: column;
+    align-items: center;
+    width: 25%;
+}
+
+.title {
+    display: $flex-display;
+    flex-direction: column;
+}
+
+button {
+    margin-top: 40px;
+}

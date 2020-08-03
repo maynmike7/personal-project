@@ -32,6 +32,8 @@ app.get('/api/logout', authCtrl.logout)
 
 //recipe endpoints
 app.get('/api/recipes', mainCtrl.getRecipes)
+app.get('/api/recipes/:id', mainCtrl.getUserRecipes)
+app.post('/api/recipes', mainCtrl.addRecipe)
 
 
 

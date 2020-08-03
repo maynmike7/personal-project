@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import {withRouter, Link} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {clearUser} from '../../ducks/reducer';
+import {clearUser} from '../../ducks/usersReducer';
 import axios from 'axios';
+import './Nav.css';
 
 class Nav extends Component {
 
@@ -28,7 +29,7 @@ class Nav extends Component {
                         <Link to='/'>Home</Link>
                         <Link to='/recipes'>Recipes</Link>
                         <Link to='/my-cookbook'>My Cookbook</Link>
-                        {!this.props.user.email
+                        {!this.props.usersReducer.user.email
                         ? (<nav>
                             <Link to='/login'>Login</Link>                            
                             </nav>)
