@@ -25,7 +25,7 @@ class Nav extends Component {
                 <h1>LullyLemon</h1>
                 {this.props.location.pathname !== '/login' && this.props.location.pathname !== '/new-recipe'
                 ? (<nav>
-                    <ul className = 'nav'>
+                    <ul className = 'nav-links'>
                         <Link to='/'>Home</Link>
                         <Link to='/recipes'>Recipes</Link>
                         <Link to='/my-cookbook'>My Cookbook</Link>
@@ -37,6 +37,7 @@ class Nav extends Component {
                     </ul>
                     </nav>)
                 : null}
+                <h3>Hi {this.props.usersReducer.user.username}</h3>
             </div>
         )
     }

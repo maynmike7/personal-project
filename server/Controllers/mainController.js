@@ -4,7 +4,7 @@ module.exports = {
         const db = req.app.get('db')
 
         db.recipes.get_recipes()
-        .then(recipes => res.status(200).send(recipes))
+        .then(recipe => res.status(200).send(recipe))
         .catch(err => res.status(500).send(err))
     },
 
@@ -24,5 +24,31 @@ module.exports = {
         db.recipes.add_recipe(id, recipeImg, title, ingredients, instructions)
         .then(() => res.sendStatus(200))
         .catch(err => res.status(500).send(err))
+    },
+
+    editRecipeTitle: (req, res) => {
+        const {id} = req.params,
+              {title} = req.body,
+              db = req.app.get('db')
+
+        db.recipes.edit_recipe_title(title, id)
+        .then(recipe => res.status(200).send(recipe))
+        .catch(err => console.log(err))
+    },
+
+    deleteRecipe: (req, res) => {
+        const {id} = req.params,
+              db = req.app.get('db')
+
+        db.recipes.delete_recipe(id)
+        .then(() => res.sendStatus(200))
+        .catch(err => res.status(500).send(err))
+    },
+
+    saveRecipe: (req, res) => {
+        const {id} = req.params,
+              db = req.app.get('db')
+
+        
     }
 }

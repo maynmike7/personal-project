@@ -29,7 +29,7 @@ class Recipes extends Component {
                 <img className='recipe-img' key={recipe.recipe_id} src={recipe.recipe_img} alt='LullyLemon Recipe'/>
                 <section className='title'>
                     <h1>{recipe.title}</h1>
-                    <button onClick={this.props.saveRecipe}>Save</button>
+                    <button onClick={() => this.props.saveRecipe(recipe.ur_id)}>Save</button>
                 </section>
                 <section className='ingredients'>
                     <h3>Ingredients</h3>

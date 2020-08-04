@@ -1,3 +1,9 @@
 .nav {
-    display: flex
+    display: flex;
+    justify-content: space-around; 
+}
+.nav-links {
+    width: 40vw;
+    display: flex;
+    justify-content: space-between;
 }

@@ -15,7 +15,7 @@ export default function reducer(state = initialState, action){
     const {type, payload} = action
     switch(type){
         case SAVE_RECIPE:
-            return {...state, user: payload}
+            return {...state, savedRecipes: payload}
         default:
             return state
     }

@@ -34,7 +34,8 @@ app.get('/api/logout', authCtrl.logout)
 app.get('/api/recipes', mainCtrl.getRecipes)
 app.get('/api/recipes/:id', mainCtrl.getUserRecipes)
 app.post('/api/recipes', mainCtrl.addRecipe)
-
+app.put('/api/recipes/:id', mainCtrl.editRecipeTitle)
+app.delete('/api/recipes/:id', mainCtrl.deleteRecipe)
 
 
 app.listen(port, () => console.log(`Server running on ${port}`))

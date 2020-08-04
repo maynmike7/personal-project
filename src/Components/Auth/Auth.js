@@ -87,6 +87,7 @@ class Auth extends Component {
                        </>)
                     : (<>
                         <button onClick={this.handleLogin}>Login</button>
+                        <button onClick={() => {this.props.history.push('/')}}>Cancel</button>
                         <p>Don't have an account? <span onClick={this.handleToggle}>Register Here</span></p>
                        </>)}
                 </section>
