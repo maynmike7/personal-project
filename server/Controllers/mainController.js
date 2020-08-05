@@ -1,5 +1,5 @@
 module.exports = {
-
+    
     getRecipes:  (req, res) => {
         const db = req.app.get('db')
 
@@ -46,9 +46,11 @@ module.exports = {
     },
 
     saveRecipe: (req, res) => {
-        const {id} = req.params,
+        const {id, recipeImg, title, ingredients, instructions} = req.params,
               db = req.app.get('db')
 
-        
+        db.recipes.save_recipe(id, recipeImg, title, ingredients, instructions)
+        .then(() => res.sendStatus(200))
+        .catch(err => res.status(500).send(err))
     }
 }

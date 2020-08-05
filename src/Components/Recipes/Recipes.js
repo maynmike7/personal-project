@@ -5,12 +5,6 @@ import axios from 'axios';
 import './Recipes.css';
 
 class Recipes extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            recipes: []
-        }
-    }
 
     componentDidMount(){
         this.getRecipes()
@@ -18,18 +12,24 @@ class Recipes extends Component {
 
     getRecipes = () => {
         axios.get('/api/recipes')
-        .then(res => this.setState({recipes: res.data}))
+        .then(res => this.props.saveRecipe(res.data))
+        .catch(err => console.log(err))
+    }
+
+    saveRecipe = (recipeId, recipeImg, title, ingredients, instructions) => {
+        axios.post(`/api/recipes/${recipeId}`, {recipeImg, title, ingredients, instructions})
+        .then(() => {this.props.history.push('/my-cookbook')})
         .catch(err => console.log(err))
     }
 
     render () {
         console.log(this.props)
-        const mappedRecipes = this.state.recipes.map((recipe) => (
+        const mappedRecipes = this.props.recipeReducer.savedRecipes.map((recipe) => (
             <div className='recipe-card'>
                 <img className='recipe-img' key={recipe.recipe_id} src={recipe.recipe_img} alt='LullyLemon Recipe'/>
                 <section className='title'>
                     <h1>{recipe.title}</h1>
-                    <button onClick={() => this.props.saveRecipe(recipe.ur_id)}>Save</button>
+                    <button onClick={() => this.saveRecipe(recipe.ur_id, recipe.recipe_img, recipe.title, recipe.ingredients, recipe.instructions)}>Save</button>
                 </section>
                 <section className='ingredients'>
                     <h3>Ingredients</h3>

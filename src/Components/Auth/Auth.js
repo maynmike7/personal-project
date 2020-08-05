@@ -1,35 +1,44 @@
-import React, {Component} from 'react';
+import React, {useState} from 'react';
 import axios from 'axios';
-import {connect} from 'react-redux';
-import {getUser} from '../../ducks/usersReducer'
+import {useDispatch} from 'react-redux'
+// import {connect} from 'react-redux';
+// import {getUser} from '../../ducks/usersReducer'
 
-class Auth extends Component {
-    constructor (props) {
-        super (props) 
-        this.state = {
-            email: '',
-            username: '',
-            password: '',
-            verPassword: '',
-            registerView: false
-        }
-    }
+const Auth = (props) => {
+    // constructor (props) {
+    //     super (props) 
+    //     this.state = {
+    //         email: '',
+    //         username: '',
+    //         password: '',
+    //         verPassword: '',
+    //         registerView: false
+    //     }
+    // }
 
-    handleInput = (event) => {
-        this.setState({[event.target.name]: event.target.value})
-    }
+    // const handleInput = (event) => {
+    //     this.setState({[event.target.name]: event.target.value})
+    // }
 
-    handleToggle = () => {
-        this.setState({registerView: !this.state.registerView})
+    const getUser = useDispatch()
+    
+    let [email, setEmail] = useState('')
+    let [username, setUsername] = useState('')
+    let [password, setPassword] = useState('')
+    let [verPassword, setVerPassword] = useState('')
+    let [registerView, setRegisterView] = useState(false)
+    
+    const handleToggle = () => {
+        setRegisterView(!registerView)
     }  
     
-    handleRegister = () => {
-        const {email, username, password, verPassword} = this.state
+    const handleRegister = () => {
+        // const {email, username, password, verPassword} = this.state
         if(password && password === verPassword){
             axios.post('/api/register', {email, username, password})
             .then(res => {
-                this.props.getUser(res.data)
-                this.props.history.push('/my-cookbook')
+                getUser({type: 'GET_USER', payload: res.data})
+                props.history.push('/my-cookbook')
             })
             .catch(err => console.log(err)) 
         } else {
@@ -37,63 +46,64 @@ class Auth extends Component {
         }
     }
 
-    handleLogin = () => {
-        const {email, password} = this.state
+    const handleLogin = () => {
+        // const {email, password} = this.state
         axios.post('/api/login', {email, password})
         .then(res => {
-            this.props.getUser(res.data)
-            this.props.history.push('/my-cookbook')
+            getUser({type: 'GET_USER', payload: res.data})
+            props.history.push('/my-cookbook')
         })
         .catch(err => console.log(err))
     }
 
-    render () {
+    // render () {
         // console.log(this.state)
         return (
             <div>
                 <section>
                     <h1>Welcome to LullyLemon</h1>
-                    {this.state.registerView
+                    {registerView
                     ? (<>
                         <h3>Register Below</h3>
                         <input 
-                            value={this.state.username}
+                            value={username}
                             name='username'
                             placeholder='Username'
-                            onChange={(e) => this.handleInput(e)}/>
+                            onChange={(e) => setUsername(e.target.value)}/>
                        </>)
                     : <h3>Login Below</h3>}
                     <input 
-                        value={this.state.email}
+                        value={email}
                         name='email'
                         placeholder='Email'
-                        onChange={(e) => this.handleInput(e)}/>
+                        onChange={(e) => setEmail(e.target.value)}/>
                     <input 
                         type='password'
-                        value={this.state.password}
+                        value={password}
                         name='password'
                         placeholder='Password'
-                        onChange={(e) => this.handleInput(e)}/>
-                    {this.state.registerView
+                        onChange={(e) => setPassword(e.target.value)}/>
+                    {registerView
                     ? (<>
                         <input 
                             type='password'
-                            value={this.state.verPassword}
+                            value={verPassword}
                             name='verPassword'
                             placeholder='Verify Password'
-                            onChange={(e) => this.handleInput(e)}/>
-                        <button onClick={this.handleRegister}>Register</button>
-                        <p>Have an account? <span onClick={this.handleToggle}>Login Here</span></p>
+                            onChange={(e) => setVerPassword(e.target.value)}/>
+                        <button onClick={handleRegister}>Register</button>
+                        <p>Have an account? <span onClick={handleToggle}>Login Here</span></p>
                        </>)
                     : (<>
-                        <button onClick={this.handleLogin}>Login</button>
-                        <button onClick={() => {this.props.history.push('/')}}>Cancel</button>
-                        <p>Don't have an account? <span onClick={this.handleToggle}>Register Here</span></p>
+                        <button onClick={handleLogin}>Login</button>
+                        <button onClick={() => {props.history.push('/')}}>Cancel</button>
+                        <p>Don't have an account? <span onClick={handleToggle}>Register Here</span></p>
                        </>)}
                 </section>
             </div>
         )
-    }
+    // }
 }
 
-export default connect(null, {getUser})(Auth);
+// export default connect(null, {getUser})(Auth);
+export default Auth;

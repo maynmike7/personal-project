@@ -1,60 +1,72 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
+import React, {useState} from 'react';
+// import {connect} from 'react-redux';
 import axios from 'axios';
 
-class Form extends Component {
-    constructor (props) {
-        super (props)
-        this.state = {
-            recipeImg: '',
-            title:'',
-            ingredients:'',
-            instructions:''
-        }
-    }
+import {useSelector} from 'react-redux'
 
-    handleInput = (event) => {
-        this.setState({[event.target.name]: event.target.value})
-    }
+const Form = (props) => {
 
-    createPost = () => {
-        axios.post('/api/recipes', {id: this.props.usersReducer.user.user_id, recipeImg: this.state.recipeImg, title: this.state.title, ingredients: this.state.ingredients, instructions: this.state.instructions})
-        .then(() => {this.props.history.push('/my-cookbook')})
+    const userId = useSelector((state) => state.usersReducer.user.user_id)
+
+    let [recipeImg, setRecipeImg] = useState('')
+    let [title, setTitle] = useState('')
+    let [ingredients, setIngredients] = useState('')
+    let [instructions, setInstructions] = useState('')
+    // constructor (props) {
+    //     super (props)
+    //     this.state = {
+    //         recipeImg: '',
+    //         title:'',
+    //         ingredients:'',
+    //         instructions:''
+    //     }
+    // }
+
+    // handleInput = (event) => {
+    //     this.setState({[event.target.name]: event.target.value})
+    // }
+
+    const addRecipe = () => {
+        
+        axios.post('/api/recipes', {id: userId, recipeImg, title, ingredients, instructions})
+        .then(() => {props.history.push('/my-cookbook')})
         .catch(err => console.log(err));
     }
 
-    render () {
-        console.log(this.state)
-        console.log(this.props)
+    // render () {
+    //     console.log(this.state)
+    //     console.log(this.props)
+    console.log(userId)
         return (
             <div>
                 <h1>Add Recipe</h1>
                 <input
-                    value={this.state.recipeImg}
+                    value={recipeImg}
                     name='recipeImg'
                     placeholder='Add Image URL'
-                    onChange={(e) => this.handleInput(e)}/>
+                    onChange={(e) => setRecipeImg(e.target.value)}/>
                 <input
-                    value={this.state.title}
+                    value={title}
                     name='title'
                     placeholder='Add Title'
-                    onChange={(e) => this.handleInput(e)}/>
+                    onChange={(e) => setTitle(e.target.value)}/>
                 <input
-                    value={this.state.ingredients}
+                    value={ingredients}
                     name='ingredients'
                     placeholder='Add Ingredients'
-                    onChange={(e) => this.handleInput(e)}/>
+                    onChange={(e) => setIngredients(e.target.value)}/>
                 <input
-                    value={this.state.instructions}
+                    value={instructions}
                     name='instructions'
                     placeholder='Add Insturctions'
-                    onChange={(e) => this.handleInput(e)}/>
-                <button onClick={this.createPost}>Add</button>
+                    onChange={(e) => setInstructions(e.target.value)}/>
+                <button onClick={addRecipe}>Add</button>
             </div>
         )
-    }
+    // }
 }
 
-const mapStateToProps = reduxState => reduxState
+// const mapStateToProps = reduxState => reduxState
 
-export default connect(mapStateToProps)(Form);
+// export default connect(mapStateToProps)(Form);
+export default Form;
