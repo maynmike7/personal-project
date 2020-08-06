@@ -46,7 +46,7 @@ module.exports = {
     },
 
     saveRecipe: (req, res) => {
-        const {id, recipeImg, title, ingredients, instructions} = req.params,
+        const {id, recipeImg, title, ingredients, instructions} = req.body,
               db = req.app.get('db')
 
         db.recipes.save_recipe(id, recipeImg, title, ingredients, instructions)

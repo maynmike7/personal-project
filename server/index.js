@@ -4,6 +4,7 @@ const express = require('express'),
       session = require('express-session'),
       authCtrl = require('./Controllers/authController'),
       mainCtrl = require('./Controllers/mainController'),
+      path = require('path'),
       {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env,
       port = SERVER_PORT,
       app = express();
@@ -37,6 +38,11 @@ app.post('/api/recipes', mainCtrl.addRecipe)
 app.post('/api/recipes/:id', mainCtrl.saveRecipe)
 app.put('/api/recipes/:id', mainCtrl.editRecipeTitle)
 app.delete('/api/recipes/:id', mainCtrl.deleteRecipe)
+
+app.use(express.static(__dirname + '/../build'))
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../build/index.html'))
+})
 
 
 app.listen(port, () => console.log(`Server running on ${port}`))

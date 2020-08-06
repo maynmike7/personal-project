@@ -1,4 +1,5 @@
 insert into user_recipes (
+    user_id,
     recipe_img,
     title,
     ingredients,
@@ -7,5 +8,6 @@ insert into user_recipes (
     $1,
     $2,
     $3,
-    $4
+    $4,
+    $5
 );

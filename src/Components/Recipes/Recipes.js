@@ -6,6 +6,7 @@ import './Recipes.css';
 
 class Recipes extends Component {
 
+
     componentDidMount(){
         this.getRecipes()
     }
@@ -16,20 +17,25 @@ class Recipes extends Component {
         .catch(err => console.log(err))
     }
 
-    saveRecipe = (recipeId, recipeImg, title, ingredients, instructions) => {
-        axios.post(`/api/recipes/${recipeId}`, {recipeImg, title, ingredients, instructions})
+    saveRecipe = (i) => {
+        console.log(i)
+        axios.post(`/api/recipes/${this.props.recipeReducer.savedRecipes[i].recipe_id}`, this.props.usersReducer.user.user_id, this.props.recipeReducer.savedRecipes[i].recipe_img, this.props.recipeReducer.savedRecipes[i].title, this.props.recipeReducer.savedRecipes[i].ingredients, this.props.recipeReducer.savedRecipes[i].instructions)
         .then(() => {this.props.history.push('/my-cookbook')})
         .catch(err => console.log(err))
     }
 
+
+
     render () {
         console.log(this.props)
-        const mappedRecipes = this.props.recipeReducer.savedRecipes.map((recipe) => (
+        const mappedRecipes = this.props.recipeReducer.savedRecipes.map((recipe, index) => (
             <div className='recipe-card'>
                 <img className='recipe-img' key={recipe.recipe_id} src={recipe.recipe_img} alt='LullyLemon Recipe'/>
                 <section className='title'>
                     <h1>{recipe.title}</h1>
-                    <button onClick={() => this.saveRecipe(recipe.ur_id, recipe.recipe_img, recipe.title, recipe.ingredients, recipe.instructions)}>Save</button>
+                    <button onClick={() => this.saveRecipe(index)
+                        // recipe.ur_id, recipe.recipe_img, recipe.title, recipe.ingredients, recipe.instructions
+                        }>Save</button>
                 </section>
                 <section className='ingredients'>
                     <h3>Ingredients</h3>
