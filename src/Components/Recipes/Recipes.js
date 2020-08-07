@@ -48,7 +48,7 @@ class Recipes extends Component {
             </div>
         ))
         return (
-            <div>
+            <div className='recipes-body'>
                 {mappedRecipes}
             </div>
         )

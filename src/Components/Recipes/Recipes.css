@@ -1,3 +1,10 @@
+.recipes-body {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background-color: #eeeeee;
+}
+
 .recipe-card {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -6,10 +13,14 @@
       -ms-flex-pack: justify;
           justify-content: space-between;
   border: solid 2px black;
+  height: 150px;
+  margin-top: 10px;
+  margin-bottom: 20px;
 }
 
 .recipe-img {
   width: 150px;
+  height: 150px;
 }
 
 .ingredients {
@@ -47,9 +58,16 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
 }
 
 button {
   margin-top: 40px;
+  width: 50px;
 }
 /*# sourceMappingURL=Recipes.css.map */

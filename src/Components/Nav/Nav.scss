@@ -1,9 +1,39 @@
-.nav {
+$textColor : rgb(56, 56, 56);
+
+@mixin flexCenter {
     display: flex;
-    justify-content: space-around; 
+    align-items: center;
+}
+
+.nav {
+    height: 50px;
+    @include flexCenter();
+    justify-content: space-between;
+    margin-top: 7px;
+    color: $textColor;
+}
+.nav-logo {
+    @include flexCenter();
+    z-index: 100;
+    margin-left: 20px;
+}
+.nav-bar {
+    width: 40vw;
+    @include flexCenter();
+    justify-content: space-between;
 }
 .nav-links {
-    width: 40vw;
-    display: flex;
-    justify-content: space-between;
+    text-decoration: none;
+    color: $textColor;
+    font-size: 24px;
+}
+.logo {
+    height: 75px;
+    margin-top: 7px;
+}
+
+.greeting {
+    margin-right: 20px;
+    font-size: 20px;
+    z-index: 99;
 }

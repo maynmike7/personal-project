@@ -1,0 +1,19 @@
+.body {
+  position: absolute;
+  top: 0px;
+  height: 100vh;
+  width: 100vw;
+  background-image: url("https://i.pinimg.com/originals/de/79/60/de7960a788764b6ef2686d75dd9cb5db.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.text {
+  color: #383838;
+  position: relative;
+  top: 30vh;
+  left: 50vw;
+  font-size: 30px;
+}
+/*# sourceMappingURL=Landing.css.map */

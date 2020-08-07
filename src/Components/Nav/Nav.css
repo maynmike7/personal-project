@@ -1,18 +1,56 @@
 .nav {
+  height: 50px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-top: 7px;
+  color: #383838;
 }
 
-.nav-links {
+.nav-logo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  z-index: 100;
+  margin-left: 20px;
+}
+
+.nav-bar {
   width: 40vw;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+}
+
+.nav-links {
+  text-decoration: none;
+  color: #383838;
+  font-size: 24px;
+}
+
+.logo {
+  height: 75px;
+  margin-top: 7px;
+}
+
+.greeting {
+  margin-right: 20px;
+  font-size: 20px;
+  z-index: 99;
 }
 /*# sourceMappingURL=Nav.css.map */

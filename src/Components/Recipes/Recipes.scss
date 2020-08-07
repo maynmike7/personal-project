@@ -1,13 +1,24 @@
 $flex-display: flex;
 
+.recipes-body {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(238, 238, 238);
+}
+
 .recipe-card {
     display: $flex-display;
     justify-content: space-between;
     border: solid 2px black;
+    height: 150px;
+    margin-top: 10px;
+    margin-bottom: 20px;
 }
 
 .recipe-img {
     width: 150px;
+    height: 150px;
 }
 
 .ingredients {
@@ -26,8 +37,11 @@ $flex-display: flex;
 .title {
     display: $flex-display;
     flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
 }
 
 button {
     margin-top: 40px;
+    width: 50px;
 }
