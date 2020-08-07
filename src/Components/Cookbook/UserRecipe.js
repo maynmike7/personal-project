@@ -1,5 +1,6 @@
 import React, {Component}from 'react';
 import axios from 'axios';
+import './Cookbook.css'
 
 export default class UserRecipe extends Component {
     constructor(props) {
@@ -13,7 +14,7 @@ export default class UserRecipe extends Component {
     deleteRecipe = (id) => {
         axios.delete(`api/recipes/${id}`)
         .then(() => {
-            this.getUserRecipes()
+            this.props.getUserRecipes()
         })
         .catch(err => console.log(err))
     }
@@ -43,17 +44,18 @@ export default class UserRecipe extends Component {
             (
                 <div className='recipe-card'>
                     <img className='recipe-img' key={recipe.ur_id} src={recipe.recipe_img} alt='LullyLemon Recipe'/>
-                    <section className='title'>
+                    <section className='cookbook-title'>
                         {!this.state.editView
-                        ? <h2>{recipe.title} <button onClick={this.handleEditView}>Edit</button></h2>
+                        ? <h2>{recipe.title} <button className='edit-button' onClick={this.handleEditView}>Edit</button></h2>
                         : (<div>
                             <input 
                                 value={this.state.title}
                                 placeholder='New Title'
                                 onChange={(e) => this.handleInput(e.target.value)}/>
                             <button onClick={() => this.editTitle(recipe.ur_id)}>Submit</button>
+                            <button onClick={this.handleEditView}>Cancel</button>
                         </div>)}
-                        <button onClick={() => this.deleteRecipe(recipe.ur_id)}>Remove</button>
+                        <button className='remove-button' onClick={() => this.deleteRecipe(recipe.ur_id)}>Remove</button>
                     </section>
                     <section className='ingredients'>
                         <h3>Ingredients</h3>

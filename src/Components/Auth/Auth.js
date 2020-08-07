@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import axios from 'axios';
 import {useDispatch} from 'react-redux'
+import './Auth.css'
 // import {connect} from 'react-redux';
 // import {getUser} from '../../ducks/usersReducer'
 
@@ -61,7 +62,6 @@ const Auth = (props) => {
         return (
             <div>
                 <section>
-                    <h1>Welcome to LullyLemon</h1>
                     {registerView
                     ? (<>
                         <h3>Register Below</h3>
@@ -97,7 +97,7 @@ const Auth = (props) => {
                     : (<>
                         <button onClick={handleLogin}>Login</button>
                         <button onClick={() => {props.history.push('/')}}>Cancel</button>
-                        <p>Don't have an account? <span onClick={handleToggle}>Register Here</span></p>
+                        <p>Don't have an account? <span className='register' onClick={handleToggle}>Register Here</span></p>
                        </>)}
                 </section>
             </div>

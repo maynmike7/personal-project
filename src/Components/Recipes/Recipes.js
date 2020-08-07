@@ -19,7 +19,7 @@ class Recipes extends Component {
 
     saveRecipe = (i) => {
         console.log(i)
-        axios.post(`/api/recipes/${this.props.recipeReducer.savedRecipes[i].recipe_id}`, this.props.usersReducer.user.user_id, this.props.recipeReducer.savedRecipes[i].recipe_img, this.props.recipeReducer.savedRecipes[i].title, this.props.recipeReducer.savedRecipes[i].ingredients, this.props.recipeReducer.savedRecipes[i].instructions)
+    axios.post(`/api/recipes/${this.props.recipeReducer.savedRecipes[i].recipe_id}`, {id: this.props.usersReducer.user.user_id, recipeImg: this.props.recipeReducer.savedRecipes[i].recipe_img, title: this.props.recipeReducer.savedRecipes[i].title, ingredients: this.props.recipeReducer.savedRecipes[i].ingredients, instructions: this.props.recipeReducer.savedRecipes[i].instructions})
         .then(() => {this.props.history.push('/my-cookbook')})
         .catch(err => console.log(err))
     }

@@ -37,3 +37,13 @@ $textColor : rgb(56, 56, 56);
     font-size: 20px;
     z-index: 99;
 }
+
+@media(max-width: 970px){
+    .nav-bar{
+        width: 50vw;
+    }
+}
+
+@media(max-width: 760px){
+    
+}

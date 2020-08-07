@@ -3,6 +3,7 @@ import UserRecipe from './UserRecipe';
 import {connect} from 'react-redux';
 import {clearUser} from '../../ducks/usersReducer'
 import axios from 'axios';
+import './Cookbook.css'
 
 class Cookbook extends Component {
     constructor(props) {
@@ -51,10 +52,10 @@ class Cookbook extends Component {
         const mappedUserRecipes = this.state.userRecipes.map((recipe) => <UserRecipe getUserRecipes={this.getUserRecipes} recipe={recipe}/>)
         return (
             <div>
-                <h1>My Cookbook</h1>
+                <h1 className='cookbook-title'>My Cookbook</h1>
                 {mappedUserRecipes}
                 {/* {mappedSavedRecipes} */}
-                <button onClick={() => {this.props.history.push('/new-recipe')}}>Add Recipe</button>
+                <button className='add-button' onClick={() => {this.props.history.push('/new-recipe')}}>Add Recipe</button>
             </div>
         )
     }

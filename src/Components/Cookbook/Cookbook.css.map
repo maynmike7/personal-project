@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,eAAe,CAAC;EACZ,QAAQ,EAAE,QAAQ;EAClB,MAAM,EAAE,IAAI;CACf;;AAED,AAAA,WAAW,CAAC;EACR,KAAK,EAAE,IAAI;CACd;;AAED,AAAA,YAAY,CAAC;EACT,KAAK,EAAE,IAAI;CACd;;AAED,AAAA,cAAc,CAAC;EACX,KAAK,EAAE,IAAI;CACd",
+    "sources": [
+        "Cookbook.scss"
+    ],
+    "names": [],
+    "file": "Cookbook.css"
+}

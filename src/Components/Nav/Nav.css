@@ -53,4 +53,10 @@
   font-size: 20px;
   z-index: 99;
 }
+
+@media (max-width: 970px) {
+  .nav-bar {
+    width: 50vw;
+  }
+}
 /*# sourceMappingURL=Nav.css.map */

@@ -4,10 +4,10 @@ $flex-display: flex;
     position: absolute;
     width: 100vw;
     height: 100vh;
-    background-color: rgb(238, 238, 238);
 }
 
 .recipe-card {
+    background-color: rgb(238, 238, 238);
     display: $flex-display;
     justify-content: space-between;
     border: solid 2px black;
@@ -37,7 +37,7 @@ $flex-display: flex;
 .title {
     display: $flex-display;
     flex-direction: column;
-    justify-content: center;
+    // justify-content: center;
     align-items: flex-start;
 }
 

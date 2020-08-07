@@ -6,12 +6,18 @@ import axios from 'axios';
 import './Nav.css';
 
 class Nav extends Component {
+    constructor(props){
+        super(props)
+        this.state = {
+            dropdownView: false
+        }
+    }
 
     handleLogout = () => {
         axios.get('/api/logout')
         .then(() => {
             this.props.clearUser()
-            this.props.history.push('/landing')
+            this.props.history.push('/')
         })
         .catch(err => console.log(err))
     }
